@@ -1,9 +1,20 @@
 package main
 
-import "github.com/dangdang1ing15/nomadcoin/blockchain"
+import (
+	"fmt"
+
+	"github.com/dangdang1ing15/nomadcoin/blockchain"
+)
 
 func main() {
 	chain := blockchain.GetBlockchain()
+	chain.AddBlock("Second Block")
+	chain.AddBlock("Third Block")
+	for _, block := range chain.AllBlocks() {
+		fmt.Printf("Data: %s\n", block.Data)
+		fmt.Printf("Hash: %s\n", block.Hash)
+		fmt.Printf("Prev Hash: %s\n", block.PrevHash)
+	}
 }
 
 // #1 스트링을 바꿔준다는 거에서 번거롭, 자동화가 안되어있어 블록마다 복붙해야하는 문제 있음, 해결예정
