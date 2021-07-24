@@ -8,7 +8,7 @@ import (
 
 // #1 데이터를 오직 block에다가만 저장하는 blockchain
 
-type block struct {
+type Block struct {
 	Data     string
 	Hash     string
 	PrevHash string
@@ -17,19 +17,20 @@ type block struct {
 // #2 blockchain struct 생성해 block들의 slice를 가지고 있다 정의
 
 type blockchain struct {
-	Blocks []*block
+	Blocks []*Block
 }
 
 // singleton 패턴
 var b *blockchain
 var once sync.Once
 
-func (b *block) calculateHash() {
+func (b *Block) calculateHash() {
 	hash := sha256.Sum256([]byte(b.Data + b.PrevHash))
 	b.Hash = fmt.Sprintf("%x", hash)
 }
 
 func getLastHash() string {
+
 	totalBlocks := len(GetBlockchain().Blocks)
 	if totalBlocks == 0 {
 		return ""
@@ -37,8 +38,8 @@ func getLastHash() string {
 	return GetBlockchain().Blocks[totalBlocks-1].Hash
 }
 
-func createBlock(data string) *block {
-	newBlock := block{data, "", getLastHash()}
+func createBlock(data string) *Block {
+	newBlock := Block{data, "", getLastHash()}
 	newBlock.calculateHash()
 	return &newBlock
 }
@@ -57,6 +58,6 @@ func GetBlockchain() *blockchain {
 	return b
 }
 
-func (b *blockchain) AllBlocks() []*block {
+func (b *blockchain) AllBlocks() []*Block {
 	return b.Blocks
 }
