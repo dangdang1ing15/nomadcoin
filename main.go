@@ -1,31 +1,9 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"net/http"
-	"text/template"
-
-	"github.com/dangdang1ing15/nomadcoin/blockchain"
-)
-
-const port string = ":4000"
-
-type homeData struct {
-	PageTitle string
-	Blocks    []*blockchain.Block
-}
-
-func home(rw http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("template/home.gohtml"))
-	data := homeData{"HOME", blockchain.GetBlockchain().AllBlocks()}
-	tmpl.Execute(rw, data)
-}
+import "github.com/dangdang1ing15/nomadcoin/explorer"
 
 func main() {
-	http.HandleFunc("/", home)
-	fmt.Printf("Listening on http://localhost%s\n", port)
-	log.Fatal(http.ListenAndServe(port, nil))
+	explorer.Start()
 }
 
 // #1 스트링을 바꿔준다는 거에서 번거롭, 자동화가 안되어있어 블록마다 복붙해야하는 문제 있음, 해결예정
@@ -33,3 +11,5 @@ func main() {
 
 // #3 서버사이드 랜더링 시작, Explorer / ResponseWriter에 간단한 text를 써서 user에게 보내는 방법 해봄
 // #4 html 랜더링 시작/ 템플릿 활용
+// #5 분활, 리액트에서 컴포넌트처럼(?)
+// #6
