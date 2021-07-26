@@ -1,12 +1,10 @@
 package main
 
 import (
-	"github.com/dangdang1ing15/nomadcoin/explorer"
 	"github.com/dangdang1ing15/nomadcoin/rest"
 )
 
 func main() {
-	go explorer.Start(3000)
 	rest.Start(4000)
 }
 
@@ -18,3 +16,4 @@ func main() {
 // #5 분활, 리액트에서 컴포넌트처럼(?)
 // #6 REST API 만들기
 // #7 url을 완전한 url로 바꾸고 싶음, struct가 encode될 때 url을 추가하고 싶음
+// #8 멀티플렉서를 직접 만들어서 핸들링, GorillaMux 설치
