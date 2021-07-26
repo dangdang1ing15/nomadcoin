@@ -1,9 +1,13 @@
 package main
 
-import "github.com/dangdang1ing15/nomadcoin/explorer"
+import (
+	"github.com/dangdang1ing15/nomadcoin/explorer"
+	"github.com/dangdang1ing15/nomadcoin/rest"
+)
 
 func main() {
-	explorer.Start()
+	go explorer.Start(3000)
+	rest.Start(4000)
 }
 
 // #1 스트링을 바꿔준다는 거에서 번거롭, 자동화가 안되어있어 블록마다 복붙해야하는 문제 있음, 해결예정
@@ -12,4 +16,5 @@ func main() {
 // #3 서버사이드 랜더링 시작, Explorer / ResponseWriter에 간단한 text를 써서 user에게 보내는 방법 해봄
 // #4 html 랜더링 시작/ 템플릿 활용
 // #5 분활, 리액트에서 컴포넌트처럼(?)
-// #6
+// #6 REST API 만들기
+// #7 url을 완전한 url로 바꾸고 싶음, struct가 encode될 때 url을 추가하고 싶음
