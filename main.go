@@ -1,11 +1,9 @@
 package main
 
-import (
-	"github.com/dangdang1ing15/nomadcoin/rest"
-)
+import "github.com/dangdang1ing15/nomadcoin/cli"
 
 func main() {
-	rest.Start(4000)
+	cli.Start()
 }
 
 // #1 스트링을 바꿔준다는 거에서 번거롭, 자동화가 안되어있어 블록마다 복붙해야하는 문제 있음, 해결예정
@@ -17,3 +15,6 @@ func main() {
 // #6 REST API 만들기
 // #7 url을 완전한 url로 바꾸고 싶음, struct가 encode될 때 url을 추가하고 싶음
 // #8 멀티플렉서를 직접 만들어서 핸들링, GorillaMux 설치
+// #9 에러(블록 갯수 넘어갈 때 생기는 오류)차리, middle Ware설정
+
+// #10 CLI 설정
