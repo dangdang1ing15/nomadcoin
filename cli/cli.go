@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime"
 
 	"github.com/dangdang1ing15/nomadcoin/explorer"
 	"github.com/dangdang1ing15/nomadcoin/rest"
@@ -14,7 +15,7 @@ func usage() {
 	fmt.Printf("Please use the following flags:\n\n")
 	fmt.Printf("-port:		Set the PORT of the server\n")
 	fmt.Printf("-mode:		Choose between 'html' and 'rest'\n\n")
-	os.Exit(0)
+	runtime.Goexit()
 }
 
 func Start() {
@@ -23,8 +24,8 @@ func Start() {
 		usage()
 	}
 
-	hport := flag.Int("hport", 4000, "Set port of the html server")
-	rport := flag.Int("rport", 4200, "Set port of the rest server")
+	hport := flag.Int("hport", 3000, "Set port of the html server")
+	rport := flag.Int("rport", 4000, "Set port of the rest server")
 	mode := flag.String("mode", "run", "Choose between 'html' and 'rest' or 'run' for both")
 
 	flag.Parse()
